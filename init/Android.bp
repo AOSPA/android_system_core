@@ -98,6 +98,14 @@ init_device_sources = [
     "ueventd_parser.cpp",
 ]
 
+cc_library_static {
+    name: "vendor_init",
+    recovery_available: true,
+    srcs: [
+        "vendor_init.cpp",
+    ],
+}
+
 soong_config_module_type {
     name: "libinit_cc_defaults",
     module_type: "cc_defaults",
@@ -243,7 +251,10 @@ cc_defaults {
     ],
     whole_static_libs: [
         "libcap",
-    ],
+    ] + select(soong_config_variable("libinit", "vendor_init_lib"), {
+        any @ flag_val: [flag_val],
+        default: ["vendor_init"],
+    }),
     header_libs: ["bootimg_headers"],
     proto: {
         type: "lite",
