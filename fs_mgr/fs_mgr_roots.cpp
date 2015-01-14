@@ -37,7 +37,7 @@ FstabEntry* GetEntryForPath(Fstab* fstab, const std::string& path) {
     if (path.empty()) return nullptr;
     std::string str(path);
     while (true) {
-        auto entry = GetEntryForMountPoint(fstab, str);
+        auto entry = GetEntryForMountPointTryDetectFs(fstab, str);
         if (entry != nullptr) return entry;
         if (str == "/") break;
         auto slash = str.find_last_of('/');
