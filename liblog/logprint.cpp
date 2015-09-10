@@ -197,7 +197,10 @@ static android_LogPriority filterPriForTag(AndroidLogFormat* p_format, const cha
  */
 int android_log_shouldPrintLine(AndroidLogFormat* p_format, const char* tag,
                                 android_LogPriority pri) {
-  return pri >= filterPriForTag(p_format, tag);
+    if (!strncmp(tag, "AEC_PORT", 8) || !strncmp(tag, "mm-camera", 9))
+        return 0;
+    else
+        return pri >= filterPriForTag(p_format, tag);
 }
 
 AndroidLogFormat* android_log_format_new() {
