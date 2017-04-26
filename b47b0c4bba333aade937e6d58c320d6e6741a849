@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_0a2c1b4a",
+        "filename": "rootdir/init.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2017-04-26T17:51:54Z",
+      "side": 1,
+      "message": "One line here for consistency? Two looks empty lines weird on my editor.",
+      "revId": "b47b0c4bba333aade937e6d58c320d6e6741a849",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
+    }
+  ]
+}
