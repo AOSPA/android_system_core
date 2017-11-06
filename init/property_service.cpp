@@ -771,6 +771,50 @@ static void load_override_properties() {
     }
 }
 
+/* From Magisk@jni/magiskhide/hide_utils.c */
+static const char *snet_prop_key[] = {
+	"ro.boot.vbmeta.device_state",
+	"ro.boot.verifiedbootstate",
+	"ro.boot.flash.locked",
+	"ro.boot.selinux",
+	"ro.boot.veritymode",
+	"ro.boot.warranty_bit",
+	"ro.warranty_bit",
+	"ro.debuggable",
+	"ro.secure",
+	"ro.build.keys",
+	"ro.build.tags",
+	"ro.system.build.tags",
+	"ro.build.selinux",
+	NULL
+};
+
+static const char *snet_prop_value[] = {
+	"locked",
+	"green",
+	"1",
+	"enforcing",
+	"enforcing",
+	"0",
+	"0",
+	"0",
+	"1",
+	"release-keys",
+	"release-keys",
+	"release-keys",
+	"0",
+	NULL
+};
+
+static void workaround_snet_properties() {
+	LOG(INFO) << "snet: Hiding sensitive props";
+
+	// Hide all sensitive props
+	for (int i = 0; snet_prop_key[i]; ++i) {
+		InitPropertySet(snet_prop_key[i], snet_prop_value[i]);
+	}
+}
+
 // If the ro.product.[brand|device|manufacturer|model|name] properties have not been explicitly
 // set, derive them from ro.product.${partition}.* properties
 static void property_initialize_ro_product_props() {
@@ -934,6 +978,9 @@ static void property_derive_build_display_id() {
     const std::string UNKNOWN = "unknown";
     std::string build_type = GetProperty("ro.build.type", "");
     if (build_type == "user") {
+        // Workaround SafetyNet
+        workaround_snet_properties();
+
         std::string display_build_number = GetProperty("ro.build.display_build_number", "");
         if (display_build_number == "true") {
             build_display_id = GetProperty("ro.build.id", UNKNOWN);
@@ -973,8 +1020,8 @@ static void property_derive_build_display_id() {
 static void property_derive_build_props() {
     property_derive_build_fingerprint();
     property_derive_build_product();
-    property_derive_build_description();
     property_derive_build_display_id();
+    property_derive_build_description();
 }
 
 void PropertyLoadBootDefaults() {
