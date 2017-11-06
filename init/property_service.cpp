@@ -771,6 +771,38 @@ static void load_override_properties() {
     }
 }
 
+/* From Magisk@native/jni/magiskhide/hide_policy.cpp */
+static const char *snet_prop_key[] = {
+	"ro.boot.vbmeta.device_state",
+	"ro.boot.verifiedbootstate",
+	"ro.boot.flash.locked",
+	"ro.boot.veritymode",
+	"ro.boot.warranty_bit",
+	"ro.warranty_bit",
+	"ro.build.tags",
+	NULL
+};
+
+static const char *snet_prop_value[] = {
+	"locked",
+	"green",
+	"1",
+	"enforcing",
+	"0",
+	"0",
+	"release-keys",
+	NULL
+};
+
+static void workaround_snet_properties() {
+	LOG(INFO) << "snet: Hiding sensitive props";
+
+	// Hide all sensitive props
+	for (int i = 0; snet_prop_key[i]; ++i) {
+		InitPropertySet(snet_prop_key[i], snet_prop_value[i]);
+	}
+}
+
 // If the ro.product.[brand|device|manufacturer|model|name] properties have not been explicitly
 // set, derive them from ro.product.${partition}.* properties
 static void property_initialize_ro_product_props() {
@@ -934,6 +966,9 @@ static void property_derive_build_display_id() {
     const std::string UNKNOWN = "unknown";
     std::string build_type = GetProperty("ro.build.type", "");
     if (build_type == "user") {
+        // Workaround SafetyNet
+        workaround_snet_properties();
+
         std::string display_build_number = GetProperty("ro.build.display_build_number", "");
         if (display_build_number == "true") {
             build_display_id = GetProperty("ro.build.id", UNKNOWN);
