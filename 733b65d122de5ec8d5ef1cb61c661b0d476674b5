@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3663b02e_e1b08b4f",
+        "filename": "init/property_service.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2017-11-07T14:15:39Z",
+      "side": 1,
+      "message": "In a second review pass, I think we can remove this as it gets loaded as part of load_persist_props()?\nWe wouldn\u0027t need to override persistent props or local props in our init extension anyways I would think.",
+      "range": {
+        "startLine": 683,
+        "startChar": 0,
+        "endLine": 686,
+        "endChar": 33
+      },
+      "revId": "733b65d122de5ec8d5ef1cb61c661b0d476674b5",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": false
+    }
+  ]
+}
