@@ -25,6 +25,12 @@
 #include <android-base/stringprintf.h>
 #include <log/log_properties.h>
 
+#if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
+#include <android/adbroot/IADBRootService.h>
+#include <binder/IServiceManager.h>
+#include <utils/String16.h>
+#endif
+
 #include "adb_io.h"
 #include "adb_unique_fd.h"
 
@@ -33,10 +39,39 @@ void restart_root_service(unique_fd fd) {
         WriteFdExactly(fd.get(), "adbd is already running as root\n");
         return;
     }
+
+#if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
+    android::sp<android::IBinder> binder =
+            android::defaultServiceManager()->getService(android::String16("adbroot_service"));
+    if (!binder) {
+        LOG(ERROR) << "Failed to get service: adbroot_service";
+        return;
+    }
+
+    android::sp<android::adbroot::IADBRootService> service =
+            android::adbroot::IADBRootService::asInterface(binder);
+    if (!service) {
+        LOG(ERROR) << "Failed to get adbroot_service interface";
+        return;
+    }
+#endif
+
+#if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
+    bool enabled = false;
+    if (auto status = service->getEnabled(&enabled); !status.isOk()) {
+#endif
     if (!__android_log_is_debuggable()) {
         WriteFdExactly(fd.get(), "adbd cannot run as root in production builds\n");
         return;
     }
+#if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
+    }
+    if (!enabled) {
+        WriteFdExactly(fd, "ADB Root access is disabled by system setting - "
+                "enable in Settings -> System -> Developer options\n");
+        return;
+    }
+#endif
 
     LOG(INFO) << "adbd restarting as root";
     android::base::SetProperty("service.adb.root", "1");
