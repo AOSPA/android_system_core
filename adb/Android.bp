@@ -415,6 +415,7 @@ cc_library {
     target: {
         android: {
             srcs: [
+                ":adbrootservice_aidl",
                 "daemon/abb_service.cpp",
                 "daemon/framebuffer_service.cpp",
                 "daemon/mdns.cpp",
@@ -423,21 +424,31 @@ cc_library {
                 "daemon/restart_service.cpp",
                 "daemon/set_verity_enable_state_service.cpp",
             ],
+            cflags: [
+                "-Wno-exit-time-destructors",
+            ],
             static_libs: [
                 "libavb_user",
             ],
             shared_libs: [
+                "libbinder",
                 "libbootloader_message",
                 "libmdnssd",
                 "libext4_utils",
                 "libfec",
                 "libfs_mgr",
                 "libselinux",
+                "libutils",
             ],
         },
         recovery: {
             exclude_srcs: [
+                ":adbrootservice_aidl",
                 "daemon/abb_service.cpp",
+            ],
+            exclude_shared_libs: [
+                "libbinder",
+                "libutils",
             ],
         },
     },
