@@ -92,7 +92,7 @@ static bool should_drop_privileges() {
     bool drop = ro_secure;
 
     // ... except "adb root" lets you keep privileges in a debuggable build.
-    std::string prop = android::base::GetProperty("service.adb.root", "");
+    std::string prop = android::base::GetProperty("pa.service.adb.root", "");
     bool adb_root = (prop == "1");
     bool adb_unroot = (prop == "0");
     if (ro_debuggable && adb_root) {
