@@ -3,5 +3,5 @@ service adb_root /system/bin/adb_root
     user root
     group root
 
-on boot
+on post-fs-data
     mkdir /data/adbroot 0700 root root
