@@ -139,7 +139,7 @@ class Service {
     void StopOrReset(int how);
     void ZapStdio() const;
     void OpenConsole() const;
-    void KillProcessGroup(int signal);
+    void KillProcessGroup(int signal, bool report_oneshot = false);
     void SetProcessAttributes();
 
     Result<Success> ParseCapabilities(std::vector<std::string>&& args);
