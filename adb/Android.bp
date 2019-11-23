@@ -415,7 +415,6 @@ cc_library {
     target: {
         android: {
             srcs: [
-                ":adbrootservice_aidl",
                 "daemon/abb_service.cpp",
                 "daemon/framebuffer_service.cpp",
                 "daemon/mdns.cpp",
@@ -428,6 +427,7 @@ cc_library {
                 "-Wno-exit-time-destructors",
             ],
             static_libs: [
+                "adbroot_aidl_interface-cpp",
                 "libavb_user",
             ],
             shared_libs: [
@@ -443,8 +443,10 @@ cc_library {
         },
         recovery: {
             exclude_srcs: [
-                ":adbrootservice_aidl",
                 "daemon/abb_service.cpp",
+            ],
+            exclude_static_libs: [
+                "adbroot_aidl_interface-cpp",
             ],
             exclude_shared_libs: [
                 "libbinder",
@@ -525,8 +527,10 @@ cc_binary {
     init_rc: [
         "root/adb_root.rc",
     ],
-    shared_libs: [
+    static_libs: [
         "adbroot_aidl_interface-cpp",
+    ],
+    shared_libs: [
         "libbase",
         "libbinder",
         "liblog",
