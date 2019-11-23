@@ -57,7 +57,7 @@ void restart_root_service(unique_fd fd) {
 #endif
 
 #if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
-    bool enabled;
+    bool enabled = false;
     if (auto status = service->getEnabled(&enabled); !status.isOk()) {
 #endif
     if (!__android_log_is_debuggable()) {
