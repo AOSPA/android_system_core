@@ -34,5 +34,5 @@ int main(int /* argc */, char** argv) {
     }
     android::IPCThreadState::self()->joinThreadPool();
 
-    exit(0);
+    return 0;
 }
