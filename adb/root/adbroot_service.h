@@ -34,6 +34,7 @@ class ADBRootService : public BinderService<ADBRootService>, public BnADBRootSer
     static char const* getServiceName() { return "adbroot_service"; }
   private:
     bool enabled_;
+    Mutex lock_;
 };
 
 }  // namespace adbroot
