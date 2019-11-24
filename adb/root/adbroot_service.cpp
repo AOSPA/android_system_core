@@ -16,6 +16,7 @@
 
 #include <android-base/file.h>
 #include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <android-base/strings.h>
 #include <private/android_filesystem_config.h>
 
@@ -60,8 +61,18 @@ binder::Status ADBRootService::setEnabled(bool enabled) {
     }
 
     AutoMutex _l(lock_);
-    enabled_ = enabled;
-    WriteStringToFile(std::to_string(enabled), kStoragePath + kEnabled);
+
+    if (enabled_ != enabled) {
+        enabled_ = enabled;
+        WriteStringToFile(std::to_string(enabled), kStoragePath + kEnabled);
+
+        // Turning off adb root, restart adbd.
+        if (!enabled) {
+            base::SetProperty("lineage.service.adb.root", "0");
+            base::SetProperty("ctl.restart", "adbd");
+        }
+    }
+
     return binder::Status::ok();
 }
 
