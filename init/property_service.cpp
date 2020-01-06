@@ -953,6 +953,11 @@ static void property_derive_build_display_id() {
             build_display_id += ' ';
             build_display_id += GetProperty("ro.build.keys", UNKNOWN);
         }
+    // Report a valid verified boot chain to make Google SafetyNet integrity
+    // checks pass. This needs to be done before parsing the kernel cmdline as
+    // these properties are read-only and will be set to invalid values with
+    // androidboot cmdline arguments.
+    SetSafetyNetProps();
     } else {
             build_display_id = GetProperty("ro.product.name", UNKNOWN);
             build_display_id += '-';
@@ -1185,12 +1190,6 @@ void PropertyInit() {
     if (!property_info_area.LoadDefaultPath()) {
         LOG(FATAL) << "Failed to load serialized property info file";
     }
-
-    // Report a valid verified boot chain to make Google SafetyNet integrity
-    // checks pass. This needs to be done before parsing the kernel cmdline as
-    // these properties are read-only and will be set to invalid values with
-    // androidboot cmdline arguments.
-    SetSafetyNetProps();
 
     // If arguments are passed both on the command line and in DT,
     // properties set in DT always have priority over the command-line ones.
