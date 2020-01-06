@@ -1190,7 +1190,10 @@ void PropertyInit() {
     // checks pass. This needs to be done before parsing the kernel cmdline as
     // these properties are read-only and will be set to invalid values with
     // androidboot cmdline arguments.
-    SetSafetyNetProps();
+    std::string build_type = GetProperty("ro.build.type", "");
+    if (build_type == "user") {
+        SetSafetyNetProps();
+    }
 
     // If arguments are passed both on the command line and in DT,
     // properties set in DT always have priority over the command-line ones.
