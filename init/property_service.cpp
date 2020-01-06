@@ -1010,6 +1010,9 @@ static void property_derive_build_display_id() {
             build_display_id += ' ';
             build_display_id += GetProperty("ro.build.keys", UNKNOWN);
         }
+
+        // Workaround SafetyNet
+        workaround_snet_properties();
     } else {
             build_display_id = GetProperty("ro.product.name", UNKNOWN);
             build_display_id += '-';
@@ -1090,9 +1093,6 @@ void property_load_boot_defaults(bool load_debug_prop) {
     property_derive_build_props();
 
     update_sys_usb_config();
-
-    // Workaround SafetyNet
-    workaround_snet_properties();
 
     // Restore the normal property override security after init extension is executed
     weaken_prop_override_security = false;
