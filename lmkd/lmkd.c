@@ -1838,103 +1838,6 @@ static void set_process_group_and_prio(int pid, SchedPolicy sp, int prio) {
     closedir(d);
 }
 
-/*
- * Allow lmkd to "find" shell scripts with oom_score_adj >= 0
- * Since we are not informed when a shell script exit, the generated
- * list may be obsolete. This case is handled by the loop in
- * find_and_kill_processes.
- */
-static void proc_get_script(void)
-{
-    static DIR* d = NULL;
-    struct dirent* de;
-    char path[PATH_MAX];
-    static char line[LINE_MAX];
-    ssize_t len;
-    int fd, oomadj = OOM_SCORE_ADJ_MIN;
-    uint32_t pid;
-    struct proc *procp;
-    int rss;
-    static bool retry_eligible = false;
-    struct timespec curr_tm;
-    static struct timespec last_traverse_time;
-    static bool check_time = false;
-
-    if(check_time) {
-	    clock_gettime(CLOCK_MONOTONIC_COARSE, &curr_tm);
-	    if (get_time_diff_ms(&last_traverse_time, &curr_tm) <
-			    PSI_PROC_TRAVERSE_DELAY_MS)
-		    return;
-    }
-repeat:
-    if (!d && !(d = opendir("/proc"))) {
-        ALOGE("Failed to open /proc");
-        return;
-    }
-
-    while ((de = readdir(d))) {
-        if (sscanf(de->d_name, "%u", &pid) != 1)
-            continue;
-
-        /* Don't attempt to kill init */
-        if (pid == 1)
-            continue;
-
-        /* Don't attempt to kill kthreads */
-        rss = proc_get_size(pid);
-        if (rss <= 0)
-            continue;
-
-        snprintf(path, sizeof(path), "/proc/%u/oom_score_adj", pid);
-        fd = open(path, O_RDONLY | O_CLOEXEC);
-        if (fd < 0)
-            continue;
-
-        len = read_all(fd, line, sizeof(line) - 1);
-        close(fd);
-
-        if (len < 0)
-            continue;
-
-        line[LINE_MAX - 1] = '\0';
-
-        if (sscanf(line, "%d", &oomadj) != 1) {
-            ALOGE("Parsing oomadj %s failed", line);
-            continue;
-        }
-
-        if (oomadj < 0)
-            continue;
-
-        procp = pid_lookup(pid);
-        if (!procp) {
-            procp = malloc(sizeof(*procp));
-            if (!procp)
-                break;
-
-            procp->pid = pid;
-            procp->uid = 0;
-            procp->oomadj = oomadj;
-            proc_insert(procp);
-	    retry_eligible = true;
-	    check_time = false;
-	    ALOGI("proc_get_script: Added a task to kill list");
-	    return;
-        } else {
-            ALOGD("Entry already exists %d: %s\n", procp->pid, proc_get_name(pid));
-        }
-    }
-    closedir(d);
-    d = NULL;
-    if (retry_eligible) {
-	    retry_eligible = false;
-	    goto repeat;
-    }
-    check_time = true;
-    clock_gettime(CLOCK_MONOTONIC_COARSE, &last_traverse_time);
-    ALOGI("proc_get_script: None tasks are added to kill list");
-}
-
 static int last_killed_pid = -1;
 
 /* Kill one process specified by procp.  Returns the size of the process killed */
@@ -2031,13 +1934,11 @@ out:
 static int find_and_kill_process(int min_score_adj) {
     int i;
     int killed_size = 0;
-    bool can_retry = true;
 
 #ifdef LMKD_LOG_STATS
     bool lmk_state_change_start = false;
 #endif
 
-retry:
     for (i = OOM_SCORE_ADJ_MAX; i >= min_score_adj; i--) {
         struct proc *procp;
 
@@ -2063,12 +1964,6 @@ retry:
         if (killed_size) {
             break;
         }
-    }
-
-    if (!killed_size && !min_score_adj && can_retry) {
-        proc_get_script();
-        can_retry = false;
-        goto retry;
     }
 
 #ifdef LMKD_LOG_STATS
