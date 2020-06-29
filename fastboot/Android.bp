@@ -221,6 +221,13 @@ cc_library_host_static {
         "util.cpp",
         "fastboot_driver.cpp",
     ],
+    product_variables: {
+        aospa: {
+            target_uses_prebuilt_partitions: {
+                cflags: ["-DTARGET_USES_PREBUILT_DYNAMIC_PARTITIONS"],
+            },
+        },
+    },
 
     // Only version the final binaries
     use_version_lib: false,
