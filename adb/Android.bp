@@ -476,8 +476,12 @@ cc_library {
                 "daemon/restart_service.cpp",
             ],
             shared_libs: [
+                "libbinder_ndk",
                 "libmdnssd",
                 "libselinux",
+            ],
+            static_libs: [
+                "adbroot_aidl_interface-ndk_platform",
             ],
         },
         recovery: {
@@ -485,8 +489,12 @@ cc_library {
                 "daemon/abb_service.cpp",
             ],
             exclude_shared_libs: [
+                "libbinder_ndk",
                 "libadb_pairing_auth",
                 "libadb_pairing_connection",
+            ],
+            exclude_static_libs: [
+                "adbroot_aidl_interface-ndk_platform",
             ],
         },
     },
@@ -587,10 +595,25 @@ cc_binary {
     ],
 
     target: {
+        android: {
+            shared_libs: [
+                "libbinder_ndk",
+            ],
+
+            static_libs: [
+                "adbroot_aidl_interface-ndk_platform",
+            ],
+        },
+
         recovery: {
             exclude_shared_libs: [
                 "libadb_pairing_auth",
                 "libadb_pairing_connection",
+                "libbinder_ndk",
+            ],
+
+            exclude_static_libs: [
+                "adbroot_aidl_interface-ndk_platform",
             ],
         }
     },
@@ -614,6 +637,26 @@ phony {
         "libadbd_auth",
         "libadbd_fs",
         "reboot.recovery",
+    ],
+}
+
+cc_binary {
+    name: "adb_root",
+    srcs: [
+        "root/adbroot_service.cpp",
+        "root/main.cpp",
+    ],
+    init_rc: [
+        "root/adb_root.rc",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+        "libutils",
+    ],
+    static_libs: [
+        "adbroot_aidl_interface-ndk_platform",
     ],
 }
 
@@ -817,5 +860,29 @@ cc_test_host {
         "fastdeploy/testdata/rotating_cube-release.apk",
         "fastdeploy/testdata/sample.apk",
         "fastdeploy/testdata/sample.cd",
+    ],
+}
+
+aidl_interface {
+    name: "adbroot_aidl_interface",
+    unstable: true,
+    local_include_dir: "aidl",
+    srcs: [
+        "aidl/android/adbroot/IADBRootService.aidl",
+    ],
+    backend: {
+        ndk: {
+            apex_available: [
+                "//apex_available:platform",
+                "com.android.adbd",
+            ],
+        },
+    },
+}
+
+filegroup {
+    name: "adbrootservice_aidl",
+    srcs: [
+        "aidl/android/adbroot/IADBRootService.aidl",
     ],
 }
