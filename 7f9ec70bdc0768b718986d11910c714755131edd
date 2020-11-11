@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48be5319_92dcbcb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2020-11-11T20:01:41Z",
+      "side": 1,
+      "message": "move this one to the bottom, the commit title should still be init: workaround SafetyNet check",
+      "revId": "7f9ec70bdc0768b718986d11910c714755131edd",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": true
+    }
+  ]
+}
