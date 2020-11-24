@@ -795,12 +795,18 @@ static const char *snet_prop_value[] = {
 };
 
 static void workaround_snet_properties() {
+    // Weaken property override security to set safetynet props
+    weaken_prop_override_security = true;
+
 	LOG(INFO) << "snet: Hiding sensitive props";
 
 	// Hide all sensitive props
 	for (int i = 0; snet_prop_key[i]; ++i) {
 		InitPropertySet(snet_prop_key[i], snet_prop_value[i]);
 	}
+
+    // Restore the normal property override security after safetynet props have been set
+    weaken_prop_override_security = false;
 }
 
 // If the ro.product.[brand|device|manufacturer|model|name] properties have not been explicitly
@@ -1058,6 +1064,9 @@ void PropertyLoadBootDefaults() {
     property_derive_build_props();
 
     update_sys_usb_config();
+
+    // Workaround SafetyNet
+    workaround_snet_properties();
 }
 
 bool LoadPropertyInfoFromFile(const std::string& filename,
