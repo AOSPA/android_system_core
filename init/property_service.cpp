@@ -780,6 +780,10 @@ static const char *snet_prop_key[] = {
 	"ro.boot.warranty_bit",
 	"ro.warranty_bit",
 	"ro.build.tags",
+	"ro.vendor.boot.warranty_bit",
+	"ro.vendor.warranty_bit",
+	"vendor.boot.vbmeta.device_state",
+	"vendor.boot.verifiedbootstate",
 	NULL
 };
 
@@ -791,6 +795,10 @@ static const char *snet_prop_value[] = {
 	"0",
 	"0",
 	"release-keys",
+	"0", // ro.vendor.boot.warranty_bit
+	"0", // ro.vendor.warranty_bit
+	"locked", // vendor.boot.vbmeta.device_state
+	"green", // vendor.boot.verifiedbootstate
 	NULL
 };
 
