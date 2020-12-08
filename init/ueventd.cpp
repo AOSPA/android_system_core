@@ -283,13 +283,7 @@ int ueventd_main(int argc, char** argv) {
 
     std::vector<std::unique_ptr<UeventHandler>> uevent_handlers;
 
-    // Keep the current product name base configuration so we remain backwards compatible and
-    // allow it to override everything.
-    // TODO: cleanup platform ueventd.rc to remove vendor specific device node entries (b/34968103)
-    auto hardware = android::base::GetProperty("ro.hardware", "");
-
-    auto ueventd_configuration = ParseConfig({"/system/etc/ueventd.rc", "/vendor/ueventd.rc",
-                                              "/odm/ueventd.rc", "/ueventd." + hardware + ".rc"});
+    auto ueventd_configuration = ParseConfig("/system/etc/ueventd.rc");
 
     uevent_handlers.emplace_back(std::make_unique<DeviceHandler>(
             std::move(ueventd_configuration.dev_permissions),
