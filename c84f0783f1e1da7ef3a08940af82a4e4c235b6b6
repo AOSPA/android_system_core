@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c64385ba_1de0f560",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-12-22T06:54:58Z",
+      "side": 1,
+      "message": "causes random reboots on first boot and possible thereafter",
+      "revId": "c84f0783f1e1da7ef3a08940af82a4e4c235b6b6",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
