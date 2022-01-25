@@ -309,11 +309,13 @@ on init
     write /proc/sys/net/ipv4/ping_group_range "0 2147483647"
     write /proc/sys/net/unix/max_dgram_qlen 600
 
-    # Assign reasonable ceiling values for socket rcv/snd buffers.
-    # These should almost always be overridden by the target per the
-    # the corresponding technology maximums.
-    write /proc/sys/net/core/rmem_max  262144
-    write /proc/sys/net/core/wmem_max  262144
+    # Assign reasonable ceiling values for socket rcv/snd buffers
+    # Recommend to use a lower value for low memory devices
+    write /proc/sys/net/core/rmem_max  8388608
+    write /proc/sys/net/core/wmem_max  8388608
+    # Assign TCP write/read memory size.
+    write /proc/sys/net/ipv4/tcp_rmem "2097152 4194304 8388608"
+    write /proc/sys/net/ipv4/tcp_wmem "262144 524288 8388608"
 
     # reflect fwmark from incoming packets onto generated replies
     write /proc/sys/net/ipv4/fwmark_reflect 1
