@@ -50,6 +50,24 @@
       "message": "there\u0027s been some people trying to do non-caf\n\nex: chris was trying pixel 6, some others are trying or used to try mtk..",
       "revId": "06984be79e5ff0f2409317513ea748207037ea31",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5505b207_8bb2f8ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-02-13T13:37:01Z",
+      "side": 1,
+      "message": "chris was doing gs101 on p6p and gagan does mtk on teracube",
+      "parentUuid": "d010c8c6_1a1a6886",
+      "revId": "06984be79e5ff0f2409317513ea748207037ea31",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
