@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "006166aa_2b135a48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-02-13T10:42:07Z",
+      "side": 1,
+      "message": "wouldn\u0027t this break non qcom devices entirely ",
+      "revId": "06984be79e5ff0f2409317513ea748207037ea31",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
