@@ -16,6 +16,23 @@
       "message": "wouldn\u0027t this break non qcom devices entirely ",
       "revId": "06984be79e5ff0f2409317513ea748207037ea31",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d010c8c6_1a1a6886",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2022-02-13T10:51:26Z",
+      "side": 1,
+      "message": "Are there any? I mean we are CAF-based.",
+      "revId": "06984be79e5ff0f2409317513ea748207037ea31",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
