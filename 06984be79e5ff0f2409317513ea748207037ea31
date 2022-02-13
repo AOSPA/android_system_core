@@ -33,6 +33,23 @@
       "message": "Are there any? I mean we are CAF-based.",
       "revId": "06984be79e5ff0f2409317513ea748207037ea31",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c69d4527_10c73829",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000541
+      },
+      "writtenOn": "2022-02-13T10:52:54Z",
+      "side": 1,
+      "message": "there\u0027s been some people trying to do non-caf\n\nex: chris was trying pixel 6, some others are trying or used to try mtk..",
+      "revId": "06984be79e5ff0f2409317513ea748207037ea31",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
