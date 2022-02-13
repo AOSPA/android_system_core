@@ -925,6 +925,13 @@ static void UserspaceRebootWatchdogThread() {
         PersistRebootReason("userspace_failed,watchdog_triggered,failed_to_boot", false);
         RebootSystem(ANDROID_RB_RESTART2, "userspace_failed,watchdog_triggered,failed_to_boot");
     }
+    // Check for Qualcomm's post-boot script execution
+    if (!WaitForProperty("vendor.post_boot.parsed", "1", 60 * 1000)) {
+        LOG(ERROR) << "post-boot script failed to execute after sys.boot_completed + 60s, "
+                   << "please review your device tree";
+        // Reboot to recovery so that developers are aware that something is wrong.
+        RebootSystem(ANDROID_RB_RESTART2, "recovery");
+    }
     LOG(INFO) << "Device booted, stopping userspace reboot watchdog";
 }
 
