@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf0b1f6_10a046e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000715
+      },
+      "writtenOn": "2022-03-04T14:50:02Z",
+      "side": 1,
+      "message": "Will this cause odd behaviour changes like showing release-keys in about page even if the build is with test keys?",
+      "revId": "d0f4a3896ff4fcb1df693db343711ab754c75314",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
