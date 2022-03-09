@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9571f87e_eef733ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-03-09T12:18:33Z",
+      "side": 1,
+      "message": "2009975: init: Skip interface duplicates if service is an override | https://android-review.googlesource.com/c/platform/system/core/+/2009975",
+      "revId": "a5056252acbc257a04d2bb210d98333b80cb354e",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
