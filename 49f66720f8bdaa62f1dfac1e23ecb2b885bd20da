@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa1bb54_682dace3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000697
+      },
+      "writtenOn": "2022-08-07T05:16:59Z",
+      "side": 1,
+      "message": "Fixes all `Unable to set property \"ro.boottime.init.mount.*\"` warnings\n",
+      "revId": "49f66720f8bdaa62f1dfac1e23ecb2b885bd20da",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
