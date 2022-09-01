@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7428e74_79b80a35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-09-01T16:19:46Z",
+      "side": 1,
+      "message": "while we are merging this for now, 23344: power: Drop USB_HVDCP_3/P5 from type to get recognized in AOSP | https://gerrit.aospa.co/c/AOSPA/android_kernel_xiaomi_sm8250/+/23344 is the preferred solution to maintain gsi compatibility ",
+      "revId": "2530992ccde768f6721c8031e0766648be0190fb",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
