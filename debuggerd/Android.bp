@@ -249,7 +249,7 @@ cc_library_static {
             cflags: ["-DROOT_POSSIBLE"],
         },
 
-        malloc_not_svelte: {
+        malloc_use_scudo: {
             cflags: ["-DUSE_SCUDO"],
             whole_static_libs: ["libscudo"],
             srcs: ["libdebuggerd/scudo.cpp"],
