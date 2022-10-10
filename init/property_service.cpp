@@ -1287,6 +1287,8 @@ static void ProcessBootconfig() {
 }
 
 static void SetSafetyNetProps() {
+    // Don't set safety net props for recovery
+    if (IsRecoveryMode()) return;
 
     InitPropertySet("ro.boot.flash.locked", "1");
     InitPropertySet("ro.boot.vbmeta.device_state", "locked");
