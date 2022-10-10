@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1aea7d_fe3c6c2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000412
+      },
+      "writtenOn": "2022-10-10T17:03:00Z",
+      "side": 1,
+      "message": "\u003e Patch Set 1:\n\u003e \n\u003e https://github.com/AOSPA/android_system_core/commit/d396344423e144edd299eac50df2e0078c23479a\n\noh I didn\u0027t saw it",
+      "revId": "394cd190241306f45ee42bd8261eca82642de2f2",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
