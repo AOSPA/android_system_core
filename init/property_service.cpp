@@ -464,6 +464,8 @@ uint32_t CheckPermissions(const std::string& name, const std::string& value,
     const char* type = nullptr;
     property_info_area->GetPropertyInfo(name.c_str(), &target_context, &type);
 
+    LOG(INFO) << "Setting prop " << name << " using context " << source_context;
+
     if (!CheckMacPerms(name, target_context, source_context.c_str(), cr)) {
         *error = "SELinux permission check failed";
         return PROP_ERROR_PERMISSION_DENIED;
