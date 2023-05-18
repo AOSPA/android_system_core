@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52029ee_306b8119",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2023-05-18T09:16:44Z",
+      "side": 1,
+      "message": "Well, this needed https://gerrit.aospa.co/c/AOSPA/android_system_sepolicy/+/30237",
+      "revId": "049e3e7000bc37f3854e67529805f82f88f58cbc",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ],
   "submitRequirementResults": []
 }
