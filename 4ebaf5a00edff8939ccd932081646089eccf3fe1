@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e966fa_911e15a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2023-12-29T02:14:17Z",
+      "side": 1,
+      "message": "Would be kinda nice to just stop these elsewhere, such as an init.aospa.rc.  That way we never need to forward port again.",
+      "revId": "4ebaf5a00edff8939ccd932081646089eccf3fe1",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
