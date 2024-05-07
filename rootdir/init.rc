@@ -1235,6 +1235,7 @@ on property:sys.boot_completed=1
     # Setup per_boot directory so other .rc could start to use it on boot_completed
     exec - system system -- /bin/rm -rf /data/per_boot
     mkdir /data/per_boot 0700 system system encryption=Require key=per_boot_ref
+    setprop ro.vendor.qti.per_boot_created 1
 
 # system server cannot write to /proc/sys files,
 # and chown/chmod does not work for /proc/sys/ entries.
