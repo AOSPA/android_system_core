@@ -1405,12 +1405,16 @@ static void ProcessBootconfig() {
 }
 
 static void SetSafetyNetProps() {
-
     InitPropertySet("ro.boot.flash.locked", "1");
     InitPropertySet("ro.boot.vbmeta.device_state", "locked");
     InitPropertySet("ro.boot.verifiedbootstate", "green");
     InitPropertySet("ro.boot.veritymode", "enforcing");
 
+#ifndef ENG_BUILD
+    // Spoof non-eng builds (such as userdebug) to user
+    InitPropertySet("ro.build.type", "user");
+    InitPropertySet("ro.debuggable", "0");
+#endif
 }
 
 void PropertyInit() {

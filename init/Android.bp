@@ -153,6 +153,7 @@ libinit_cc_defaults {
         },
         eng: {
             cppflags: [
+                "-DENG_BUILD",
                 "-USHUTDOWN_ZERO_TIMEOUT",
                 "-DSHUTDOWN_ZERO_TIMEOUT=1",
             ],
