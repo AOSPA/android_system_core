@@ -16,6 +16,24 @@
       "message": "This is still terrible as you shouldn\u0027t have crashing services\nThis was a temporary patch until we resolved the modem crashes on marble",
       "revId": "4b283c75d1b669ef69bc8b407dda52ad9077c3d0",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "851b901e_9e0fec2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000785
+      },
+      "writtenOn": "2026-05-27T19:07:36Z",
+      "side": 1,
+      "message": "Without this i cant install the GPSU updates (probably due to bpf kver requirements), so i get stuck with 5 nov 2025 GPSU iirc, but is adding the is_updatable check really objectively wrong?",
+      "parentUuid": "65a82051_2a1de919",
+      "revId": "4b283c75d1b669ef69bc8b407dda52ad9077c3d0",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
