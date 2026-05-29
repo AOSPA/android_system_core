@@ -52,6 +52,24 @@
       "parentUuid": "851b901e_9e0fec2f",
       "revId": "4b283c75d1b669ef69bc8b407dda52ad9077c3d0",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c21033e_27f77afb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2026-05-29T05:07:38Z",
+      "side": 1,
+      "message": "removing -2 since I don\u0027t really strongly believe in blocking this patch, but i do want a good reason on why a crash is unfixable",
+      "parentUuid": "3e3fc196_ed1cbb51",
+      "revId": "4b283c75d1b669ef69bc8b407dda52ad9077c3d0",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
