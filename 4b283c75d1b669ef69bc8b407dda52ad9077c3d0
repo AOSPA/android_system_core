@@ -34,6 +34,24 @@
       "parentUuid": "65a82051_2a1de919",
       "revId": "4b283c75d1b669ef69bc8b407dda52ad9077c3d0",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e3fc196_ed1cbb51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2026-05-29T05:02:12Z",
+      "side": 1,
+      "message": "its objectively wrong to block apex updates for this yeah, but it is symptom for other problems so it does serve a purpose.\ncan you send me the pstore over slack from broken boot?\nif this is msm-4.14 I am unsure how this fixes bpf even",
+      "parentUuid": "851b901e_9e0fec2f",
+      "revId": "4b283c75d1b669ef69bc8b407dda52ad9077c3d0",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
