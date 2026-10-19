@@ -35,7 +35,7 @@ class FirstStageMountAndroid final : public FirstStageMount {
     void MountOverlays() override;
     void UseDsuIfPresent() override;
     void SaveRamdiskPathToSnapuserd() override;
-    bool AllowVerityCheckAtMostOnce() override { return dsu_not_on_userdata_; }
+    bool AllowVerityCheckAtMostOnce() override { return !dsu_not_on_userdata_; }
     void GetExtraBlockDevices(std::set<std::string>* devices) override;
 
   private:
